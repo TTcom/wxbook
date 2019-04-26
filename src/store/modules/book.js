@@ -1,17 +1,17 @@
 const book ={
 	 state: {
-	   test:1
+	   fileName:''
 	},
 	mutations: {
-	     'SET_TEST':(state,newTest) =>{
-				 state.test = newTest
+	     'SET_FILENAME':(state,fileName) =>{
+				 state.fileName = fileName
 			 }
 	},
 	actions: {
-	       setTest:({commit,state},newTest)=>{
+	       setFileName:({commit},fileName)=>{
 					  //  console.log(state.test,newTest);
 						//执行mutations中的方法
-						 commit('SET_TEST',newTest);
+						 return commit('SET_FILENAME',fileName);
 				 }
 	}
 }
