@@ -12,7 +12,7 @@
 	global.epub = Epub
 	export default{
 		computed:{
-			...mapGetters(['fileName'])
+			...mapGetters(['fileName','menuVisible'])
 		},
 		methods:{
             prevPage(){
@@ -26,10 +26,11 @@
 				}
 			},
 			toggleTitleAndMenu(){
-				
+				console.log("sdasd");
+				this.$store.dispatch("setMenuVisible",!this.menuVisible)
 			},
-			initEpub(){
-				const url = "http://localhost:9000/booklist/" + this.fileName;
+			initEpub(){      //创建图书实例
+				const url = "http://localhost:9000/" + this.fileName;
 				console.log("url",url);
 				this.book = new Epub(url);
 				this.rendition = this.book.renderTo('read',{
@@ -38,12 +39,12 @@
 					method:"default"
 				})
 				this.rendition.display();
-				this.rendition.on('touchstart',event=>{
+				this.rendition.on('touchstart',event=>{      //图书开始滑动事件
 					//console.log(event);
 					this.touchStartX=event.changedTouches[0].clientX
 					this.touchStartTime = event.timeStamp;
 				});
-				this.rendition.on('touchend',event=>{
+				this.rendition.on('touchend',event=>{    //图书结束滑动事件
 				//	console.log(event);
 					const offsetX = event.changedTouches[0].clientX - this.touchStartX;
 					const time = event.timeStamp - this.touchStartTime;
@@ -57,15 +58,15 @@
 					}
 					event.preventDefault();
 					event.stopPropagation();
-				})
+				});
+				
+				
 			}
 		},
-		mounted(){
-			const baseUrl = "http://localhost:9000/booklist/"
-		//	const fileName = this.$route.params.fileName.split('|').join('/');
-		    const fileName = this.$route.params.fileName
-			console.log(`${baseUrl}${fileName}`);
-			console.log(baseUrl,fileName);
+		mounted(){ 
+			
+			const fileName = this.$route.params.fileName.split('|').join('/');
+			console.log(fileName);
 			this.$store.dispatch('setFileName',fileName).then(()=>{
 				this.initEpub();
 			})

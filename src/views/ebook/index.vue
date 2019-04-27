@@ -1,14 +1,17 @@
 <template>
 	<div class="ebook">
+		<EbookTitle></EbookTitle>
 		<EookReader></EookReader>
 	</div>
 </template>
 
 <script>
 	import EookReader from "../../components/ebook/EbookReader"
+	import EbookTitle from "../../components/ebook/EbookTitle"
 	export default{
 		components:{
-			EookReader
+			EookReader,
+			EbookTitle
 		}
 	}
 </script>
