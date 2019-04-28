@@ -7,27 +7,30 @@
 </template>
 
 <script>
-	import {mapGetters} from "vuex"
+	import {ebookMixin} from '../../utils/mixin'
 	import Epub from 'epubjs'
 	global.epub = Epub
 	export default{
-		computed:{
-			...mapGetters(['fileName','menuVisible'])
-		},
+		mixins:[ebookMixin],
 		methods:{
             prevPage(){
 				if(this.rendition){
 					this.rendition.prev();
+					this.hideTitleAndMenu();
 				}
 			},
 			nextPage(){
 				if(this.rendition){
 					this.rendition.next();
+					this.hideTitleAndMenu();
 				}
 			},
 			toggleTitleAndMenu(){
 				console.log("sdasd");
-				this.$store.dispatch("setMenuVisible",!this.menuVisible)
+				this.setMenuVisible(!this.menuVisible)
+			},
+			hideTitleAndMenu(){
+				this.setMenuVisible(false)
 			},
 			initEpub(){      //创建图书实例
 				const url = "http://localhost:9000/" + this.fileName;
@@ -67,7 +70,7 @@
 			
 			const fileName = this.$route.params.fileName.split('|').join('/');
 			console.log(fileName);
-			this.$store.dispatch('setFileName',fileName).then(()=>{
+			this.setFileName(fileName).then(()=>{
 				this.initEpub();
 			})
 		}
