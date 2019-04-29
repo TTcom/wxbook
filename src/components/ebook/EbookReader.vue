@@ -1,4 +1,4 @@
-<template>
+1<template>
 	<div class="ebookreader" >
 		<div id="read">
 			
@@ -27,15 +27,20 @@
 			},
 			toggleTitleAndMenu(){
 				console.log("sdasd");
-				this.setMenuVisible(!this.menuVisible)
+				this.setMenuVisible(!this.menuVisible);
+				if(this.menuVisible){
+					this.setSettingVisble(-1);
+				}
 			},
 			hideTitleAndMenu(){
-				this.setMenuVisible(false)
+				this.setMenuVisible(false);
+				this.setSettingVisble(-1);
 			},
 			initEpub(){      //创建图书实例
 				const url = "http://localhost:9000/" + this.fileName;
 				console.log("url",url);
 				this.book = new Epub(url);
+				this.setCurrentBook(this.book);
 				this.rendition = this.book.renderTo('read',{
 					width:innerWidth,
 					height:innerHeight,

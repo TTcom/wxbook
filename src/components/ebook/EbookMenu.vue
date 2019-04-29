@@ -1,7 +1,7 @@
 <template>
   <div class="menu-bar">
     <transition name="slide-up">
-      <div class="menu-wrapper" :class="{'hide-box-shadow':!menuVisible}" v-show="menuVisible">
+      <div class="menu-wrapper" :class="{'hide-box-shadow':!menuVisible || settingVisble>=0}" v-show="menuVisible">
         <div class="icon-wrapper">
           <span class="icon-menu" @click="showSetting(3)"></span>
         </div>
@@ -16,6 +16,7 @@
         </div>
       </div>
     </transition>
+		<EbookSettingFont></EbookSettingFont>
     <!-- <transition name="slide-up">
     <div class="setting-wrapper" v-show="ifSettingShow">
       <div class="setting-font-size" v-if="showTag === 0">
@@ -71,33 +72,16 @@
 
 <script>
 //import ContentView from '@/components/Content'
+import EbookSettingFont from './EbookSettingFont'
 import {ebookMixin} from '../../utils/mixin'
 export default {
 	mixins:[ebookMixin],
   components: {
-  //  ContentView
-  },
-  props: {
-    ifTitleAndMenuShow: {
-      type: Boolean,
-      default: false
-    },
-    fontSizeList: Array,
-    defaultFontSize: Number,
-    themeList: Array,
-    defaultTheme: Number,
-    bookAvailable: {
-      type: Boolean,
-      default: false
-    },
-    navigation: Object
+   EbookSettingFont
   },
   data() {
     return {
-      ifSettingShow: false,
-      showTag: 0,
-      progress: 0,
-      ifShowContent: false
+
     }
   },
   methods: {
@@ -127,16 +111,9 @@ export default {
       this.$emit('setFontSize', fontSize)
     },
     // 显示设置面板
-    showSetting(tag) {
-      this.showTag = tag
-      if (this.showTag === 3) {
-        this.ifSettingShow = false
-        this.ifShowContent = true
-      } else {
-        this.ifSettingShow = true
-      }
+    showSetting(key) {
+				this.setSettingVisble(key);
     },
-    // 显示设置面板
     hideSetting() {
       this.ifSettingShow = false
     }
