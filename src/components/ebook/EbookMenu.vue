@@ -1,7 +1,7 @@
 <template>
   <div class="menu-bar">
     <transition name="slide-up">
-      <div class="menu-wrapper" :class="{'hide-box-shadow':!menuVisible || settingVisble>=0}" v-show="menuVisible">
+      <div class="menu-wrapper" :class="{'hide-box-shadow':!menuVisible || settingVisible>=0}" v-show="menuVisible">
         <div class="icon-wrapper">
           <span class="icon-menu" @click="showSetting(3)"></span>
         </div>
@@ -17,6 +17,7 @@
       </div>
     </transition>
 		<EbookSettingFont></EbookSettingFont>
+		<EbookSettingFontPopup></EbookSettingFontPopup>
     <!-- <transition name="slide-up">
     <div class="setting-wrapper" v-show="ifSettingShow">
       <div class="setting-font-size" v-if="showTag === 0">
@@ -73,11 +74,13 @@
 <script>
 //import ContentView from '@/components/Content'
 import EbookSettingFont from './EbookSettingFont'
+import EbookSettingFontPopup from './EbookSettingFontPopup'
 import {ebookMixin} from '../../utils/mixin'
 export default {
 	mixins:[ebookMixin],
   components: {
-   EbookSettingFont
+   EbookSettingFont,
+	 EbookSettingFontPopup
   },
   data() {
     return {
@@ -112,7 +115,7 @@ export default {
     },
     // 显示设置面板
     showSetting(key) {
-				this.setSettingVisble(key);
+				this.setSettingVisible(key);
     },
     hideSetting() {
       this.ifSettingShow = false

@@ -11,14 +11,14 @@ export const FONT_SIZE_LIST = [
   { fontSize: 24 }
 ]
 
-// export const FONT_FAMILY = [
-//   { font: 'Default' },
-//   { font: 'Cabin' },
-//   { font: 'Days One' },
-//   { font: 'Montserrat' },
-//   { font: 'Tangerine' }
-// ]
-// 
+export const FONT_FAMILY = [
+  { font: 'Default' },
+  { font: 'Cabin' },
+  { font: 'Days One' },
+  { font: 'Montserrat' },
+  { font: 'Tangerine' }
+]
+
 // export function themeList(vue) {
 //   return [
 //     {

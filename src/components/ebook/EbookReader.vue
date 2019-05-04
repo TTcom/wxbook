@@ -29,12 +29,12 @@
 				console.log("sdasd");
 				this.setMenuVisible(!this.menuVisible);
 				if(this.menuVisible){
-					this.setSettingVisble(-1);
+					this.setSettingVisible(-1);
 				}
 			},
 			hideTitleAndMenu(){
 				this.setMenuVisible(false);
-				this.setSettingVisble(-1);
+				this.setSettingVisible(-1);
 			},
 			initEpub(){      //创建图书实例
 				const url = "http://localhost:9000/" + this.fileName;

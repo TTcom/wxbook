@@ -2,11 +2,11 @@ const mutations={
 	     'SET_FILENAME':(state,fileName) =>{
 			 state.fileName = fileName
 		 },
-		 'SET_MENUVISIBLE':(state,menuVisible) =>{
+		 'SET_MENU_VISIBLE':(state,menuVisible) =>{
 			 state.menuVisible = menuVisible
 		 },
-		 'SET_SETTINGVISIBLE':(state,settingVisble) =>{
-		 			 state.settingVisble = settingVisble
+		 'SET_SETTING_VISIBLE':(state,settingVisible) =>{
+		 			 state.settingVisible = settingVisible
 		 },
 		 'SET_DEFAULT_FONTSIZE':(state,defaultFontSize) =>{    //设置默认字体
 		 			 state.defaultFontSize = defaultFontSize

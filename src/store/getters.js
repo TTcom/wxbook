@@ -1,7 +1,7 @@
 const gettersdata = {
 	fileName : state => state.fileName,
 	menuVisible : state => state.menuVisible,
-	settingVisble:state => state.settingVisble,
+	settingVisible:state => state.settingVisible,
 	defaultFontSize:state => state.defaultFontSize,
 	defaultFontFamily: state => state.defaultFontFamily,
 	fontFamilyVisible: state => state.fontFamilyVisible,
