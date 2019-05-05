@@ -9,10 +9,15 @@
 <script>
 	import {ebookMixin} from '../../utils/mixin'
 	import Epub from 'epubjs'
+	import {getFontFamily,saveFontFamily,
+	getFontSize,saveFontSize,getTheme,
+	saveTheme
+	} from '../../utils/localStorage'
 	global.epub = Epub
 	export default{
 		mixins:[ebookMixin],
 		methods:{
+			
             prevPage(){
 				if(this.rendition){
 					this.rendition.prev();
@@ -31,13 +36,27 @@
 				if(this.menuVisible){
 					this.setSettingVisible(-1);
 				}
+				this.setFontFamilyVisible(false);
 			},
 			hideTitleAndMenu(){
 				this.setMenuVisible(false);
 				this.setSettingVisible(-1);
+				this.setFontFamilyVisible(false);
+			},
+			initTheme(){
+				let defaultTheme = getTheme(this.fileName);
+				if(!defaultTheme){
+					defaultTheme = this.themeList[0].name;
+					saveTheme(this.fileName,defaultTheme)
+				}
+				this.setDefaultTheme(defaultTheme);
+				this.themeList.forEach(theme=>{
+					this.rendition.themes.register(theme.name,theme.style)
+				})
+				this.rendition.themes.select(defaultTheme)
 			},
 			initEpub(){      //创建图书实例
-				const url = "http://localhost:9000/" + this.fileName;
+				const url =process.env.VUE_APP_RES_URL+'/'+this.fileName;
 				console.log("url",url);
 				this.book = new Epub(url);
 				this.setCurrentBook(this.book);
@@ -46,7 +65,25 @@
 					height:innerHeight,
 					method:"default"
 				})
-				this.rendition.display();
+				this.rendition.display().then(()=>{
+					this.initTheme();
+					let fontSize=getFontSize(this.fileName);
+					if(!fontSize){
+						saveFontSize(this.fileName,this.defaultFontSize)
+					}else{
+						this.currentBook.rendition.themes.fontSize(fontSize);
+						this.setDefaultFontSize(fontSize);
+					}
+					
+					let font=getFontFamily(this.fileName);
+					if(!font){
+						saveFontFamily(this.fileName,'default')
+					}else{
+						this.currentBook.rendition.themes.font(font);
+						this.setDefaultFontFamily(font);
+					}
+					this.initGlobalStyle();
+				});
 				this.rendition.on('touchstart',event=>{      //图书开始滑动事件
 					//console.log(event);
 					this.touchStartX=event.changedTouches[0].clientX
@@ -67,7 +104,12 @@
 					event.preventDefault();
 					event.stopPropagation();
 				});
-				
+				this.rendition.hooks.content.register(contents =>{
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/daysOne.css`)
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/cabin.css`)
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/montserrat.css`)
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/tangerine.css`)
+				})
 				
 			}
 		},

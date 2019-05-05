@@ -1,11 +1,17 @@
 <template>
   <div id="app">
+		<!-- <Dragbox></Dragbox> -->
     <router-view/>
+		
   </div>
 </template>
 <script>
+	import Dragbox from './components/dragbox'
 	export default{
-		   
+		   components:{
+				 Dragbox
+			 }
+			 
 	}
 			document.addEventListener('DOMContentLoaded',()=>{
 					const html = document.querySelector('html');

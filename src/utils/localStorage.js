@@ -19,16 +19,16 @@ export function clearLocalStorage() {
 }
 
 export function setBookObject(fileName, key, value) {
-  let book = getLocalStorage(`${fileName}-info`)
+  let book = getLocalStorage(fileName) //获取
   if (!book) {
     book = {}
   }
   book[key] = value
-  setLocalStorage(`${fileName}-info`, book)
+  setLocalStorage(fileName, book)  //存储
 }
 
 export function getBookObject(fileName, key) {
-  let book = getLocalStorage(`${fileName}-info`)
+  let book = getLocalStorage(fileName)
   if (book) {
     return book[key]
   } else {

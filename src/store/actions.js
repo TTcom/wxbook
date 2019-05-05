@@ -6,7 +6,7 @@ const actions={
 	        return commit('SET_DEFAULT_FONT_FAMILY', font)
 	      },
 	      setDefaultFontSize: ({ commit }, fontSize) => {
-	        return commit('SET_DEFAULT_FONT_SIZE', fontSize)
+	        return commit('SET_DEFAULT_FONTSIZE', fontSize)
 	      },
 	      setSettingVisible: ({ commit }, visible) => {
 	        return commit('SET_SETTING_VISIBLE', visible)
