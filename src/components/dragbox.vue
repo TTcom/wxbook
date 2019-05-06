@@ -58,12 +58,6 @@
 		width: 1080px;
 		height: 560px;
 		position: absolute;
-		// top: 50%;
-		// left: 50%;
-		// margin-top: -280px;
-		// margin-left:-540px;
-
-		
 		background: blueviolet;
 		cursor: move;
 	}

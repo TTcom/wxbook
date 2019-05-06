@@ -11,7 +11,8 @@
 	import Epub from 'epubjs'
 	import {getFontFamily,saveFontFamily,
 	getFontSize,saveFontSize,getTheme,
-	saveTheme
+	saveTheme,
+	getLocation
 	} from '../../utils/localStorage'
 	global.epub = Epub
 	export default{
@@ -20,13 +21,17 @@
 			
             prevPage(){
 				if(this.rendition){
-					this.rendition.prev();
+					this.rendition.prev().then(()=>{
+						this.refreshLocation();
+					})
 					this.hideTitleAndMenu();
 				}
 			},
 			nextPage(){
 				if(this.rendition){
-					this.rendition.next();
+					this.rendition.next().then(()=>{
+						this.refreshLocation();
+					});
 					this.hideTitleAndMenu();
 				}
 			},
@@ -55,35 +60,42 @@
 				})
 				this.rendition.themes.select(defaultTheme)
 			},
-			initEpub(){      //创建图书实例
-				const url =process.env.VUE_APP_RES_URL+'/'+this.fileName;
-				console.log("url",url);
-				this.book = new Epub(url);
-				this.setCurrentBook(this.book);
+			initRendition(){
 				this.rendition = this.book.renderTo('read',{
 					width:innerWidth,
 					height:innerHeight,
 					method:"default"
-				})
-				this.rendition.display().then(()=>{
-					this.initTheme();
-					let fontSize=getFontSize(this.fileName);
-					if(!fontSize){
-						saveFontSize(this.fileName,this.defaultFontSize)
-					}else{
-						this.currentBook.rendition.themes.fontSize(fontSize);
-						this.setDefaultFontSize(fontSize);
-					}
-					
-					let font=getFontFamily(this.fileName);
-					if(!font){
-						saveFontFamily(this.fileName,'default')
-					}else{
-						this.currentBook.rendition.themes.font(font);
-						this.setDefaultFontFamily(font);
-					}
-					this.initGlobalStyle();
 				});
+				const location = getLocation(this.fileName);
+				this.display(location,()=>{
+						this.initTheme();
+						let fontSize=getFontSize(this.fileName);
+						if(!fontSize){
+							saveFontSize(this.fileName,this.defaultFontSize)
+						}else{
+							this.currentBook.rendition.themes.fontSize(fontSize);
+							this.setDefaultFontSize(fontSize);
+						}
+						
+						let font=getFontFamily(this.fileName);
+						if(!font){
+							saveFontFamily(this.fileName,'default')
+						}else{
+							this.currentBook.rendition.themes.font(font);
+							this.setDefaultFontFamily(font);
+						}
+						this.initGlobalStyle();
+				})
+				
+				this.rendition.hooks.content.register(contents =>{
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/daysOne.css`)
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/cabin.css`)
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/montserrat.css`)
+					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/tangerine.css`)
+				})
+				
+			},
+			initGesture(){     //页面手势
 				this.rendition.on('touchstart',event=>{      //图书开始滑动事件
 					//console.log(event);
 					this.touchStartX=event.changedTouches[0].clientX
@@ -104,11 +116,21 @@
 					event.preventDefault();
 					event.stopPropagation();
 				});
-				this.rendition.hooks.content.register(contents =>{
-					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/daysOne.css`)
-					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/cabin.css`)
-					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/montserrat.css`)
-					contents.addStylesheet(`${process.env.VUE_APP_RES_URL}/fonts/tangerine.css`)
+			},
+			initEpub(){      //创建图书实例
+				const url =process.env.VUE_APP_RES_URL+'/'+this.fileName;
+				console.log("url",url);
+				this.book = new Epub(url);
+				this.setCurrentBook(this.book);
+				this.initRendition();
+				this.initGesture();
+				this.book.ready.then(()=>{
+					return this.book.locations.generate(750 * (window.innerWidth / 375) * (getFontSize(this.fileName) / 16)).then(locations=>{
+						//console.log(locations);
+						this.setBookAvailable(true);
+						this.refreshLocation()
+					})
+					
 				})
 				
 			}
