@@ -117,6 +117,18 @@
 					event.stopPropagation();
 				});
 			},
+			parseBook(){
+				this.book.loaded.cover.then(cover=>{
+					console.log(cover);
+					this.book.archive.createUrl(cover).then(url=>{
+						this.setCover(url);
+						console.log(url)
+					})
+				});
+				this.book.loaded.metadata.then(metadata=>{ 
+					this.setMetadata(metadata);
+				});
+			},
 			initEpub(){      //创建图书实例
 				const url =process.env.VUE_APP_RES_URL+'/'+this.fileName;
 				console.log("url",url);
@@ -124,6 +136,7 @@
 				this.setCurrentBook(this.book);
 				this.initRendition();
 				this.initGesture();
+				this.parseBook();
 				this.book.ready.then(()=>{
 					return this.book.locations.generate(750 * (window.innerWidth / 375) * (getFontSize(this.fileName) / 16)).then(locations=>{
 						//console.log(locations);

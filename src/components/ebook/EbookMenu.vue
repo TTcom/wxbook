@@ -20,19 +20,7 @@
 		<EbookSettingFontPopup></EbookSettingFontPopup>
 		<EbookSettingTheme></EbookSettingTheme>
 		<EbookSettingProgress></EbookSettingProgress>
-    <!-- <transition name="slide-up">
-    <div class="setting-wrapper" v-show="ifSettingShow">
-  </transition>
-    <content-view :ifShowContent="ifShowContent"
-                    v-show="ifShowContent"
-                    :navigation="navigation"
-                    :bookAvailable="bookAvailable"
-                    @jumpTo="jumpTo"></content-view>
-    <transition name="fade">
-      <div class="content-mask"
-            v-show="ifShowContent"
-            @click="hideContent"></div>
-    </transition> -->
+    <EbookSlide></EbookSlide>
   </div>
 </template>
 
@@ -42,6 +30,7 @@ import EbookSettingFont from './EbookSettingFont'
 import EbookSettingFontPopup from './EbookSettingFontPopup'
 import EbookSettingTheme from './EbookSettingTheme'
 import EbookSettingProgress from './EbookSettingProgress'
+import EbookSlide from './EbookSlide'
 import {ebookMixin} from '../../utils/mixin'
 export default {
 	mixins:[ebookMixin],
@@ -49,7 +38,8 @@ export default {
    EbookSettingFont,
 	 EbookSettingFontPopup,
 	 EbookSettingTheme,
-	 EbookSettingProgress
+	 EbookSettingProgress,
+	 EbookSlide
   },
   data() {
     return {
@@ -121,16 +111,6 @@ export default {
         font-size: px2rem(22);
       }
     }
-  }
-  .content-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 101;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background: rgba(51, 51, 51, .8);
   }
 }
 </style>

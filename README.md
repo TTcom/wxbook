@@ -9,21 +9,12 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
+### 2019/05/13
 ```
-npm run build
+vuex中的所有的模块都可以单独分离出来写；
+sass中&.意味着同级元素的样式；
+如果dom中的内容有methods中方法定义的内容，那么当组件dom中的内容发生任何改变时都会触发methods中绑定在dom中的函数；
+可在组件中叠加transition动画，transition叠加效果先触发最外层的动画效果； 
+可通过component标签进行动态切换组件；
+可通过input标签的range类型实现拖动进度条效果；
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
