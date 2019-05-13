@@ -107,7 +107,6 @@ export function getReadTimeByMinute(fileName) {
   }
 }
 
-// export function flatten(array) {
-//   return [].concat(...array.map(item => [].concat(item, ...flatten(item.subitems))))
-// }
-// 
+export function flatten(array) {
+  return [].concat(...array.map(item => [].concat(item, ...flatten(item.subitems))))
+}
