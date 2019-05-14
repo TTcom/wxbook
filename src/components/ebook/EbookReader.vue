@@ -1,7 +1,13 @@
 1<template>
 	<div class="ebookreader" >
-		<div id="read">
-			
+		<div id="read"></div>
+		<div class="ebook-reader-mask"
+		       @click="onMaskClick"
+		       @touchmove="move"
+		       @touchend="moveEnd"
+		       @mousedown.left="onMouseEnter"
+		       @mousemove.left="onMouseMove"
+		       @mouseup.left="onMouseEnd"></div>
 		</div>
 	</div>
 </template>
@@ -19,7 +25,75 @@
 	export default{
 		mixins:[ebookMixin],
 		methods:{
-			
+			// 1 - 鼠标进入
+			// 2 - 鼠标进入后的移动
+			// 3 - 鼠标从移动状态松手
+			// 4 - 鼠标还原
+			onMouseEnd(e) {
+			  if (this.mouseState === 2) {
+			    this.setOffsetY(0)
+			    this.firstOffsetY = null
+			    this.mouseState = 3
+			  } else {
+			    this.mouseState = 4
+			  }
+			  const time = e.timeStamp - this.mouseStartTime
+			  if (time < 100) {
+			    this.mouseState = 4
+			  }
+			  e.preventDefault()
+			  e.stopPropagation()
+			},
+			onMouseMove(e) {
+			  if (this.mouseState === 1) {
+			    this.mouseState = 2
+			  } else if (this.mouseState === 2) {
+			    let offsetY = 0
+			    if (this.firstOffsetY) {
+			      offsetY = e.clientY - this.firstOffsetY
+			      this.setOffsetY(offsetY)
+			    } else {
+			      this.firstOffsetY = e.clientY
+			    }
+			  }
+			  e.preventDefault()
+			  e.stopPropagation()
+			},
+			onMouseEnter(e) {
+			  this.mouseState = 1
+			  this.mouseStartTime = e.timeStamp
+			  e.preventDefault()
+			  e.stopPropagation()
+			},
+			move(e) {
+			  let offsetY = 0
+			  if (this.firstOffsetY) {
+			    offsetY = e.changedTouches[0].clientY - this.firstOffsetY
+			    this.setOffsetY(offsetY)
+			  } else {
+			    this.firstOffsetY = e.changedTouches[0].clientY
+			  }
+			  e.preventDefault()
+			  e.stopPropagation()
+			},
+			moveEnd(e) {
+			  this.setOffsetY(0)
+			  this.firstOffsetY = null
+			},
+			onMaskClick(e) {
+			  if (this.mouseState && (this.mouseState === 2 || this.mouseState === 3)) {
+			    return
+			  }
+			  const offsetX = e.offsetX
+			  const width = window.innerWidth
+			  if (offsetX > 0 && offsetX < width * 0.3) {
+			    this.prevPage()
+			  } else if (offsetX > 0 && offsetX > width * 0.7) {
+			    this.nextPage()
+			  } else {
+			    this.toggleTitleAndMenu()
+			  }
+			},
             prevPage(){
 				if(this.rendition){
 					this.rendition.prev().then(()=>{
@@ -97,12 +171,12 @@
 				
 			},
 			initGesture(){     //页面手势
-				this.rendition.on('touchstart',event=>{      //图书开始滑动事件
+				this.rendition.on('touchstart',event=>{      
 					//console.log(event);
 					this.touchStartX=event.changedTouches[0].clientX
 					this.touchStartTime = event.timeStamp;
 				});
-				this.rendition.on('touchend',event=>{    //图书结束滑动事件
+				this.rendition.on('touchend',event=>{   
 				//	console.log(event);
 					const offsetX = event.changedTouches[0].clientX - this.touchStartX;
 					const time = event.timeStamp - this.touchStartTime;
@@ -181,5 +255,15 @@
    .ebookreader{
 	   height: 100%;
 	   width: 100%;
+	   overflow: hidden;
+	   .ebook-reader-mask{
+		       position: absolute;
+			   z-index: 150;
+			   top: 0;
+			   left: 0;
+			   width: 100%;
+			   height: 100%;
+			   background: transparent;		
+	   }
    }
 </style>

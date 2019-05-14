@@ -37,9 +37,9 @@
         <div class="slide-contents-book-time">{{getReadTimeText()}}</div>
       </div>
     </div>
-    <!-- <scroll class="slide-contents-list"
+    <scroll class="slide-contents-list"
             :top="156"
-            :bottom="48"
+            :bottom="48" ref="scroll"
             v-show="!searchVisible">
       <div class="slide-contents-item" v-for="(item, index) in navigation" :key="index">
         <span class="slide-contents-item-label" :class="{'selected': section === index}" :style="contentItemStyle(item)"
@@ -56,19 +56,19 @@
            :key="index"
            v-html="item.excerpt"
            @click="displayContent(item.cfi, true)"></div>
-    </scroll> -->
+    </scroll> 
   </div>
 </template>
 
 <script>
    import { ebookMixin } from '../../utils/mixin'
-//   import Scroll from '../common/Scroll'
-//   import { px2rem } from '../../utils/utils'
-// 
+   import Scroll from '../common/Scroll'
+   import { px2rem } from '../../utils/utils'
+ 
   export default {
     mixins: [ebookMixin],
     components: {
-     // Scroll
+      Scroll
     },
     data() {
       return {

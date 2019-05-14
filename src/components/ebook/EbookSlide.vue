@@ -21,9 +21,9 @@
               </div>
             </div>
           </div>
-          <!-- <div class="content-empty" v-else>
+          <div class="content-empty" v-else>
               <ebook-loading></ebook-loading>
-          </div> -->
+          </div> 
         </div>
       </transition>
       <div class="content-bg" @click="hideTitleAndMenu()"></div>
@@ -35,12 +35,12 @@
   import { ebookMixin } from '../../utils/mixin'
    import EbookSlideContents from './EbookSlideContents'
    import EbookSlideBookmark from './EbookSlideBookmark'
-  // import EbookLoading from './EbookLoading'
+   import EbookLoading from './EbookLoading'
 
   export default {
     mixins: [ebookMixin],
     components: {
-      // EbookLoading
+       EbookLoading
     },
     data() {
       return {

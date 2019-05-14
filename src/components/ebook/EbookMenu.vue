@@ -86,18 +86,18 @@ export default {
 
 <style lang='scss' scoped>
 @import '../../assets/styles/global';
-.menu-bar {
-  .menu-wrapper {
+
+.menu-wrapper {
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 102;
+    z-index: 200;
     display: flex;
     width: 100%;
     height: px2rem(48);
     background: white;
     box-shadow: 0 px2rem(-8) px2rem(8) rgba(0, 0, 0, .15);
-	font-size: px2rem(20);
+    font-size: px2rem(20);
     &.hide-box-shadow {
       box-shadow: none;
     }
@@ -112,5 +112,4 @@ export default {
       }
     }
   }
-}
 </style>
