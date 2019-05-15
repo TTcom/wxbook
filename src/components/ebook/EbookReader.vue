@@ -29,7 +29,7 @@
 			// 2 - 鼠标进入后的移动
 			// 3 - 鼠标从移动状态松手
 			// 4 - 鼠标还原
-			onMouseEnd(e) {
+			 onMouseEnd(e) {
 			  if (this.mouseState === 2) {
 			    this.setOffsetY(0)
 			    this.firstOffsetY = null

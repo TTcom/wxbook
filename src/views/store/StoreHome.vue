@@ -1,0 +1,46 @@
+<template>
+	<div class="store-home">
+		<SearchBar></SearchBar>
+		<Scroll :top="94" @onScroll="onScroll">
+			<div v-for="item in 50">1111111111111111</div>
+			
+		</Scroll>
+	</div>
+</template>
+
+<script>
+	import SearchBar from '../../components/home/searchBar'
+	import Scroll from '../../components/common/Scroll'
+	import { storehomeMixin } from '../../utils/mixin'
+	export default{
+		mixins: [storehomeMixin],
+		components:{
+			SearchBar,
+			Scroll
+		},
+		methods:{
+			onScroll(offsetY){
+			       console.log(offsetY);	
+				   this.setOffsetY(offsetY);
+			}
+		},
+		data(){
+			return{
+				
+			}
+		},
+		
+		
+		
+		
+	}
+</script>
+
+<style lang="scss" rel="stylesheet/scss" scoped>
+  @import "../../assets/styles/global";
+  .store-home{
+	  background: white;
+	  width: 100%;
+	  height: 100%;
+  }
+</style>
