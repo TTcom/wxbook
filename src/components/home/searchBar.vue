@@ -22,17 +22,17 @@
         </div>
       </div>
     </div>
-    <transition name="host-search">
+   <!-- <transition name="host-search">
       <div class="hot-search-wrapper" v-if="ifShowSearchPage && ifShowHotSearch" ref="searchMaskWrapper">
-        <!-- <hot-search :label="$t('home.hotSearch')"
+       <hot-search :label="$t('home.hotSearch')"
                     :btn="$t('home.change')"
-                    :hotSearch="searchList.hotSearch"></hot-search> -->
+                    :hotSearch="searchList.hotSearch"></hot-search> 
         <div class="line"></div>
-        <!-- <hot-search :label="$t('home.historySearch')"
+       <hot-search :label="$t('home.historySearch')"
                     :btn="$t('home.clear')"
-                    :hotSearch="searchList.historySearch"></hot-search> -->
+                    :hotSearch="searchList.historySearch"></hot-search> 
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
 
@@ -50,9 +50,11 @@
 			    offsetY(offsetY){
 						console.log(offsetY);
 						if(offsetY>0){
-							this.hideTitle()
+							this.hideTitle();
+							this.showShadow();
 						}else{
-							this.showTitle()
+							this.showTitle();
+							this.hideShadow();
 						}
 					}
 		},

@@ -32,7 +32,19 @@
 				  // 实例二使用await
 				  
 				   this.getAllData();
-				   console.log("helloword")
+				   console.log("helloword");
+				   
+				   var a=5;
+				   function testa(a){
+					   
+					  return   a == -1 ?  "未知" : (a == 0 ? "中性" : (a == 1 ? "男性" : "女性"))        
+				   }
+				    
+				   console.log(testa(a));
+				   
+				   
+				   
+				   
 			 },
 			 methods:{
 				 async getAllData() {
