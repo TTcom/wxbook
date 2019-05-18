@@ -55,6 +55,9 @@ const mutations={
 		 },
 		 'SET_IS_BOOKMARK': (state, isBookmark) => {
 		   state.isBookmark = isBookmark
+		 },
+		 'SET_HOT_SEARCH_OFFSETY':(state,hotSearchOffsetY)=>{
+			   state.hotSearchOffsetY = hotSearchOffsetY
 		 }
 	}
 export default 	mutations;

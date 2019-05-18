@@ -55,7 +55,10 @@ const actions={
 	      },
 	      setOffsetY({ commit }, offsetY) {
 	        return commit('SET_OFFSETY', offsetY)
-	      }
+	      },
+				setHotSearchOffsetY({ commit }, hotSearchOffsetY) {
+				  return commit('SET_HOT_SEARCH_OFFSETY', hotSearchOffsetY)
+				}
 				 
 	}
 export default actions;

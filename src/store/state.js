@@ -17,7 +17,8 @@ const state = {
 		paginate: '',
 		pagelist: null,
 		offsetY: 0,
-		isBookmark: null
+		isBookmark: null,
+		hotSearchOffsetY:0
 }
 
 export default state;
