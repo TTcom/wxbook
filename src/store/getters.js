@@ -18,6 +18,7 @@ const gettersdata = {
 	pagelist: state => state.pagelist,
 	offsetY: state => state.offsetY,
 	isBookmark: state => state.isBookmark,
-	hotSearchOffsetY: state => state.hotSearchOffsetY
+	hotSearchOffsetY: state => state.hotSearchOffsetY,
+	flapCardVisible: state => state.flapCardVisible,
 }
 export default gettersdata

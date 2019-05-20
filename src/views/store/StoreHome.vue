@@ -1,6 +1,7 @@
 <template>
 	<div class="store-home">
 		<SearchBar></SearchBar>
+		<FlapCard></FlapCard>
 		<Scroll :top="scrollTop" @onScroll="onScroll" ref="scroll">
 			<div v-for="item in 50">1111111111111111</div>
 			
@@ -10,13 +11,15 @@
 
 <script>
 	import SearchBar from '../../components/home/searchBar'
+	import FlapCard from '../../components/home/flapCard'
 	import Scroll from '../../components/common/Scroll'
 	import { storehomeMixin } from '../../utils/mixin'
 	export default{
 		mixins: [storehomeMixin],
 		components:{
 			SearchBar,
-			Scroll
+			Scroll,
+			FlapCard
 		},
 		methods:{
 			onScroll(offsetY){

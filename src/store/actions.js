@@ -58,7 +58,11 @@ const actions={
 	      },
 				setHotSearchOffsetY({ commit }, hotSearchOffsetY) {
 				  return commit('SET_HOT_SEARCH_OFFSETY', hotSearchOffsetY)
-				}
+				},
+				setFlapCardVisible({ commit }, flapCardVisible) {
+				  return commit('SET_FLAP_CARD_VISIBLE', flapCardVisible)
+				},
+				
 				 
 	}
 export default actions;

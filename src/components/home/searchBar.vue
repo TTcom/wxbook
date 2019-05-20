@@ -175,7 +175,7 @@
         this.$emit('update:ifShowSearchPage', true)
       },
       showFlapCard() {
-        this.$emit('showFlapCard')
+        this.setFlapCardVisible(true)
       },
       handleScroll(e) {
         const target = e.target

@@ -18,7 +18,8 @@ const state = {
 		pagelist: null,
 		offsetY: 0,
 		isBookmark: null,
-		hotSearchOffsetY:0
+		hotSearchOffsetY:0,
+		flapCardVisible:false
 }
 
 export default state;
