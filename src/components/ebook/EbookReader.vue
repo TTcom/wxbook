@@ -221,7 +221,7 @@
 				
 			},
 			initEpub(){      //创建图书实例
-				const url =process.env.VUE_APP_RES_URL+'/'+this.fileName;
+				const url =process.env.VUE_APP_RES_URL+'/'+this.fileName+'.epub';
 				console.log("url",url);
 				this.book = new Epub(url);
 				this.setCurrentBook(this.book);

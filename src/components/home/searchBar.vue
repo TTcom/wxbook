@@ -117,11 +117,13 @@
       },
       search() {
         this.$router.push({
-          path: '/book-store/list',
+          path: '/store/list',
           query: {
             keyword: this.searchText
           }
         })
+				
+				
       },
       hideHotSearch() {
 				this.HotSearchVisible=false;

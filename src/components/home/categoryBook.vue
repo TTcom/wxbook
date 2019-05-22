@@ -4,7 +4,8 @@
     <div class="category-book-list">
       <div class="category-book-item" v-for="(item, index) in data.list" :key="index" @click="showBookDetail(item)">
         <div class="img-wrapper">
-          <img class="img" v-lazy="item.cover">
+          <!-- <img class="img" v-lazy="item.cover"> -->
+					<img class="img" :src="item.cover">
         </div>
         <div class="content-wrapper">
           <div class="title title-small" ref="title">{{item.title}}</div>
@@ -15,13 +16,13 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-  import TitleView from '@/components/home/title'
-  import { categoryText, getCategoryName } from '@/utils/book'
-  import { ebookHome } from '../../utils/mixin'
+<script>
+  import TitleView from '../home/title'
+  import { categoryText, getCategoryName } from '../../utils/book'
+  // import { ebookHome } from '../../utils/mixin'
 
   export default {
-    mixins: [ebookHome],
+    // mixins: [ebookHome],
     components: {
       TitleView
     },
@@ -31,7 +32,7 @@
     methods: {
       showBookCategory() {
         this.$router.push({
-          path: '/book-store/list',
+          path: '/store/list',
           query: {
             category: getCategoryName(this.data.category),
             categoryText: this.categoryText(this.data.category)

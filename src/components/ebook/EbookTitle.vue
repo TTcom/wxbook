@@ -25,7 +25,8 @@
 		mixins:[ebookMixin],
 	  methods:{
 		  back(){
-			  console.log("bakc")
+			  console.log("bakc");
+				this.$router.go(-1);
 		  }
 	  }
 	}
@@ -37,7 +38,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 101;
+    z-index: 200;
     display: flex;
     width: 100%;
     height: px2rem(48);

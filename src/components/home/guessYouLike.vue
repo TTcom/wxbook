@@ -4,7 +4,8 @@
     <div class="guess-you-like-list">
       <div class="guess-you-like-item" v-for="(item, index) in showData" :key="index" @click="showBookDetail(item)">
         <div class="img-wrapper">
-          <img class="img" v-lazy="item.cover" :key="item.cover">
+          <!-- <img class="img" v-lazy="item.cover" :key="item.cover"> -->
+					<img class="img" :src="item.cover">
         </div>
         <div class="content-wrapper">
           <div class="title title-big" ref="title">{{item.title}}</div>
@@ -16,13 +17,14 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
-  import TitleView from '@/components/home/title'
-  import { realPx } from '@/utils/utils'
-  import { ebookHome } from '../../utils/mixin'
+<script>
+  import TitleView from '../home/title'
+  import { realPx } from '../../utils/utils'
+	import { storehomeMixin } from '../../utils/mixin'
+  // import { ebookHome } from '../../utils/mixin'
 
   export default {
-    mixins: [ebookHome],
+     mixins: [storehomeMixin],
     components: {
       TitleView
     },

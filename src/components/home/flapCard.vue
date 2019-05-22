@@ -1,6 +1,6 @@
 <template>
   <div class="flap-card-wrapper" v-show="flapCardVisible">
-     <div class="flap-card-bg"  :class="{'animation': runFlapCardAnimation}">
+     <div class="flap-card-bg"  :class="{'animation': runFlapCardAnimation}" v-show="runFlapCardAnimation">
       <div class="flap-card" v-for="(item, index) in flapCardList" :key="index" :style="{zIndex: item.zIndex}">
         <div class="flap-card-semi-circle">
           <div class="flap-card-semi-circle-left" :style="semiCricelStyle(item, 'left')" ref="left"></div>
@@ -15,14 +15,15 @@
     <div class="book-card" :class="{'animation': runBookCardAnimation}" v-if="ifShowBookCard">
       <div class="book-card-wrapper">
         <div class="img-wrapper">
-          <img class="img" v-lazy="data.cover">
+          <!-- <img class="img" v-lazy="data.cover"> -->
+					<img class="img" :src="data.cover">
         </div>
         <div class="content-wrapper">
           <div class="title">{{data.title}}</div>
           <div class="author sub-title-medium">{{data.author}}</div>
           <div class="category">{{categoryText()}}</div>
         </div>
-        <div class="read-btn" @click.stop="showBookDetail">{{$t('home.readNow')}}</div>
+        <div class="read-btn" @click.stop="showBookDetail(data)">{{$t('home.readNow')}}</div>
       </div>
     </div>
     <div class="close-btn-wrapper" @click="close">
@@ -106,8 +107,7 @@
         runFlapCardAnimation: false,
         runBookCardAnimation: false,
         ifShowBookCard: false,
-        ifShowFlapCard: true,
-        ifShowPoint: true
+
       }
     },
 		watch:{
@@ -117,26 +117,29 @@
 					}
 			}
 		},
+		mounted(){
+			
+		},
     methods: {
 			runAnimation(){
 				  this.runFlapCardAnimation=true;
-					setTimeout(()=>{
+					this.timeout = setTimeout(()=>{
 						this.startFlapCardAnimation();
 						this.startPointAnimation();
 					},300)
+					this.timeout2 = setTimeout(() => {
+					  this.stopAnimation()
+					  this.showBookCard()
+					}, 2500)
 				 // this.startFlapCardAnimation()
 			},
 			 startPointAnimation() {
 			  this.runPointAnimation = true
-					setTimeout(() => {
+					this.timeout3 = setTimeout(() => {
 						this.runPointAnimation = false
-					}, 750)
+					}, 750);
+					
 			},
-      showBookDetail() {
-        if (this.data) {
-          showBookDetail(this, this.data)
-        }
-      },
       categoryText() {
         return categoryText(this.data.category, this)
       },
@@ -145,24 +148,11 @@
         this.setFlapCardVisible(false);
 				
       },
-      startAnimation() {
-        this.runFlapCardAnimation = true
-        setTimeout(() => {
-          this.startFlapCardAnimation()
-        }, 300)
-        setTimeout(() => {
-          this.startPointAnimation()
-        }, 300)
-        setTimeout(() => {
-          this.stopAnimation()
-          this.showBookCard()
-        }, 2500)
-      },
       showBookCard() {
         this.ifShowBookCard = true
         this.runBookCardAnimation = true
-        this.ifShowFlapCard = false
-        this.ifShowPoint = false
+          this.runFlapCardAnimation = false
+          this.runPointAnimation = false
       },
      
 			flapCardRotate(){
@@ -181,13 +171,6 @@
 				  this.next()
 				}
 				
-				
-				// 
-				// this.rotate(frontFlapCard, frontRightSemiCircle)
-				// this.rotate(backFlapCard, backLeftSemiCircle)
-				// if (frontFlapCard.rotateDegree === 180 && backFlapCard.rotateDegree === 0) {
-				//   this.reset()
-				// }
 				
 					this.rotate(this.front,'front');
 				  this.rotate(this.back,'back');
@@ -214,6 +197,11 @@
 					 this.rotate(index,'back');
 					 
 				 })
+				 
+				 this.runBookCardAnimation =false;
+				 this.runFlapCardAnimation = false
+				 this.runPointAnimation = false
+				 this.ifShowBookCard=false;
 				// this.prepare();
 				 
 				 
@@ -230,6 +218,15 @@
       stopAnimation() {
 				if (this.task){
 					  clearInterval(this.task)
+				}
+				if(this.timeout){
+					 clearTimeout(this.timeout);
+				}
+				if(this.timeout2){
+					 clearTimeout(this.timeout2);
+				}
+				if(this.timeout3){
+					 clearTimeout(this.timeout3);
 				}
         this.reset();
        

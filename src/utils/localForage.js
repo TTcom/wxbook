@@ -1,4 +1,4 @@
-//import localForage from 'localforage'
+import localForage from 'localforage'
 
 export function setLocalForage(key, data, cb, cb2) {
   localForage.setItem(key, data).then((value) => {
