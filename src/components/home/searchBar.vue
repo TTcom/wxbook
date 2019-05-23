@@ -150,7 +150,14 @@
 				}else{
 					this.hideShadow();
 				}
-				this.hideHotSearch()
+				if(this.HotSearchVisible){
+					this.hideHotSearch()
+				}else{
+					   this.$router.push({
+							  path:'/store/shelf'
+						 })
+				}
+				
 				
         // this.searchText = ''
         // if (this.ifShowSearchPage) {

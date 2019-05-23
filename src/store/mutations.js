@@ -61,6 +61,19 @@ const mutations={
 		 },
 		 'SET_FLAP_CARD_VISIBLE':(state,visible)=>{
 		 			   state.flapCardVisible = visible
-		 }
+		 },  
+		 'SET_IS_EDIT_MODE':(state,isEditMode)=>{
+		 			   state.isEditMode = isEditMode
+		 },
+		 'SET_SHELF_LIST':(state,shelfList)=>{
+		 			   state.shelfList = shelfList
+		 },
+		 'SET_SHELF_SELECTED':(state,shelfSelected)=>{
+		 			   state.shelfSelected = shelfSelected
+		 },
+		 'SET_SHELF_TITLE_VISIBLE':(state,shelfTitleVisible)=>{
+		 			   state.shelfTitleVisible = shelfTitleVisible
+		 },
+		 
 	}
 export default 	mutations;

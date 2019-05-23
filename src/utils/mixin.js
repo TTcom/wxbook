@@ -2,6 +2,32 @@ import {mapGetters,mapActions} from 'vuex'
 import { themeList,addCss,removeAllCss,getReadTimeByMinute  } from './book'
 import { getBookmark,saveLocation } from './localStorage'
 
+
+
+export const storeShelfMixin = {
+	
+	computed:{
+		...mapGetters([
+			'isEditMode',
+			'shelfList',
+			'shelfSelected',
+			'shelfTitleVisible',
+		])
+	
+	},
+	methods:{
+		...mapActions([
+			'setIsEditMode',
+			'setShelfList',
+			'setShelfSelected',
+			'setShelfTitleVisible'
+		]),
+	}	
+	
+	
+}
+
+
 export const storehomeMixin = {
 	computed:{
 		...mapGetters([

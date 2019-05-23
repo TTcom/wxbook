@@ -23,10 +23,10 @@
   import TitleView from '../home/title'
   import { realPx } from '../../utils/utils'
   import { categoryText } from '../../utils/book'
-  // import { ebookHome } from '../../utils/mixin'
+  import { storehomeMixin } from '../../utils/mixin'
 
   export default {
-    // mixins: [ebookHome],
+    mixins: [storehomeMixin],
     components: {
       TitleView
     },

@@ -20,5 +20,9 @@ const gettersdata = {
 	isBookmark: state => state.isBookmark,
 	hotSearchOffsetY: state => state.hotSearchOffsetY,
 	flapCardVisible: state => state.flapCardVisible,
+	isEditMode: state => state.isEditMode,
+	shelfList: state => state.shelfList,
+	shelfSelected: state => state.shelfSelected,
+	shelfTitleVisible: state => state.shelfTitleVisible,
 }
 export default gettersdata
