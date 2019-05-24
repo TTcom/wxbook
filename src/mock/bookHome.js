@@ -16,7 +16,7 @@ module.exports = {
         'private': false,
         'cache': false,
         'haveRead': 0,
-        'type': 3,
+        'type': 2,
         'result': '《Living with Disfigurement》',
         'percent': '97%'
       }, {
@@ -51,7 +51,7 @@ module.exports = {
       'private': false,
       'cache': false,
       'haveRead': 0,
-      'type': 3,
+      'type': 2,
       'result': '《Living with Disfigurement》',
       'percent': '92%'
     }, {
@@ -69,7 +69,7 @@ module.exports = {
       'private': false,
       'cache': false,
       'haveRead': 0,
-      'type': 3,
+      'type': 2,
       'result': '《Living with Disfigurement》',
       'percent': '97%'
     }, {
@@ -104,7 +104,7 @@ module.exports = {
       'private': false,
       'cache': false,
       'haveRead': 0,
-      'type': 3,
+      'type': 2,
       'result': '《Living with Disfigurement》',
       'percent': '92%'
     }, {
@@ -156,10 +156,66 @@ module.exports = {
       'private': false,
       'cache': false,
       'haveRead': 0,
-      'type': 3,
+      'type': 2,
       'result': '《Living with Disfigurement》',
       'percent': '97%'
-    }],
+    },
+		{
+		  'id': 15,
+		  'fileName': '2018_Book_HandbookOfMathematicalGeoscien',
+		  'cover': 'http://47.99.166.157/book/res/img/EarthSciences/978-3-319-78999-6_CoverFigure.jpg',
+		  'title': 'Handbook of Mathematical Geosciences',
+		  'author': 'B. S. Daya Sagar',
+		  'publisher': 'Springer International Publishing',
+		  'bookId': '2018_Book_HandbookOfMathematicalGeoscien',
+		  'category': 14,
+		  'categoryText': 'EarthSciences',
+		  'language': 'en',
+		  'selected': false,
+		  'private': false,
+		  'cache': false,
+		  'haveRead': 0,
+		  'type': 2,
+		  'result': '《Programming Languages》'
+		}, {
+		  'id': 230,
+		  'fileName': '2017_Book_InstitutionalReformForInnovati',
+		  'cover': 'http://47.99.166.157/book/res/img/Economics/2017_Book_InstitutionalReformForInnovati.jpeg',
+		  'title': 'Institutional Reform for Innovation and Entrepreneurship',
+		  'author': 'Niklas Elert, Magnus Henrekson and Mikael Stenkula',
+		  'publisher': 'Springer International Publishing, Cham',
+		  'bookId': '2017_Book_InstitutionalReformForInnovati',
+		  'category': 3,
+		  'categoryText': 'Economics',
+		  'language': 'en',
+		  'selected': false,
+		  'private': false,
+		  'cache': false,
+		  'haveRead': 0,
+		  'type': 2,
+		  'result': '《Living with Disfigurement》',
+		  'percent': '92%'
+		}, {
+		  'id': 99,
+		  'fileName': '2018_Book_Africa-EuropeResearchAndInnova',
+		  'cover': 'http://47.99.166.157/book/res/img/PoliticalScienceAndInternationalRelations/978-3-319-69929-5_CoverFigure.jpg',
+		  'title': 'Africa-Europe Research and Innovation Cooperation',
+		  'author': 'Andrew Cherry',
+		  'publisher': 'Springer International Publishing',
+		  'bookId': '2018_Book_Africa-EuropeResearchAndInnova',
+		  'category': 20,
+		  'categoryText': 'PoliticalScienceAndInternationalRelations',
+		  'language': 'en',
+		  'selected': false,
+		  'private': false,
+		  'cache': false,
+		  'haveRead': 0,
+		  'type': 2,
+		  'result': '《Living with Disfigurement》',
+		  'percent': '97%'
+		},
+		
+		],
   'banner': 'http://47.99.166.157/book/res/home_banner.jpg',
   'recommend':
     [

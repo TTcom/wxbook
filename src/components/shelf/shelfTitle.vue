@@ -23,7 +23,7 @@
       <div class="btn-back-wrapper" @click="changeGroup" v-if="ifShowBack && isEditMode">
         <span class="btn-text">{{$t('shelf.editGroup')}}</span>
       </div>
-      <popup ref="popup"
+      <!-- <popup ref="popup"
              :title="popupTitle"
              :thirdText="thirdText"
              :confirmText="confirmText"
@@ -35,22 +35,19 @@
                           :isEditGroupName="true"
                           :category="category"
                           @editGroupName="editGroupName"
-                          ref="groupDialog"></shelf-group-dialog>
+                          ref="groupDialog"></shelf-group-dialog> -->
     </div>
   </transition>
 </template>
 
 <script>
-  import Popup from '../../components/shelf/popup'
-  import ShelfGroupDialog from '../../components/shelf/shelfGroupDialog'
   import { switchLocale } from '../../utils/book'
 	import { storeShelfMixin } from '../../utils/mixin'
 
   export default {
 		mixins:[storeShelfMixin],
     components: {
-      ShelfGroupDialog,
-      Popup
+   
     },
 		data() {
 		  return {

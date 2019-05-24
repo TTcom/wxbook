@@ -15,40 +15,28 @@
                   @onBookClick="onBookClick"
                   ref="bookShelf"
                   ></ShelfList>
-                 <!-- <book-shelf-empty
-                  class="book-shelf-empty"
-                  v-if="isDataEmpty"></book-shelf-empty> -->
+                 
     </scroll>
-    <!-- <book-shelf-footer class="book-shelf-footer"
-                       :data="bookList"
-                       :bookList="bookList"
-                       :isInGroup="false"
-                       @setPrivate="setPrivate"
-                       @setDownload="setDownload"
-                       @removeBook="removeBook"
-                       @groupEdit="groupEdit"
-                       v-show="isEditMode"></book-shelf-footer>
-    <toast :text="toastText" ref="toast"></toast> -->
+     <shelfFooter></shelfFooter>
+     <!-- <toast :text="toastText" ref="toast"></toast> -->
   </div>
 </template>
 
 <script>
   import ShelfTitle from '../../components/shelf/shelfTitle'
   import ShelfSearch from '../../components/shelf/shelfSearch'
+  import ShelfFooter from '../../components/shelf/shelfFooter'
   import ShelfList from '../../components/shelf/shelfList'
   import Scroll from '../../components/common/Scroll'
-  import BookShelfFooter from '../../components/shelf/bookShelfFooter'
-  import BookShelfEmpty from '../../components/shelf/bookShelfEmpty'
-  import Toast from '../../components/shelf/toast'
+
   import { shelf, download } from '../../api/store'
   import { getLocalStorage, setLocalStorage, clearLocalStorage } from '../../utils/localStorage'
   import { getLocalForage, clearLocalForage } from '../../utils/localForage'
-  import { removeBookCache } from '../../utils/book'
+  import { removeBookCache,appendAddToShelf } from '../../utils/book'
   import Epub from 'epubjs'
   import { realPx } from '../../utils/utils'
 	import { storeShelfMixin } from '../../utils/mixin'
   import {home} from '../../api/store'
-	import { list } from '../../api/store'
   global.ePub = Epub
 
   const BOOK_SHELF_KEY = 'bookShelf'
@@ -59,24 +47,16 @@
       ShelfSearch,
       ShelfList,
       Scroll,
-      BookShelfFooter,
-      BookShelfEmpty,
-      Toast
+	  ShelfFooter
     },
 		mounted(){
 			  
-				list().then(response => {
-         this.list = response.data.data
-				  const category = "Physics"
-				  if (category) {
-				    const key = Object.keys(this.list).filter(item => item === category)[0]
-				    const data = this.list[key]
-				    this.list = {}
-				    this.list[key] = data
-				  } 
-					 console.log(this.list);
-					 const arr=this.list.Physics.slice();
-					 this.setShelfList(arr);
+				home().then(res=>{
+         const data = res.data;
+	
+					 console.log(data.guessYouLike);
+					 const arr=data.guessYouLike;
+					 this.setShelfList(appendAddToShelf(arr));
 					 
 					
 					
@@ -89,14 +69,21 @@
         return !this.bookList || this.bookList.filter(item => item.type !== 3).length === 0
       }
     },
+	watch:{
+		isEditMode(isEditMode){
+			
+			this.scrollBottom = isEditMode ? 48:0;
+			this.$nextTick(()=>{
+				this.$refs.scroll.refresh();
+			})
+			
+		}
+	},
     data() {
       return {
 				list:[],
           bookList: [],
            ifShowTitle: true,
-        // isEditMode: false,
-        // ifShowBack: false,
-        // ifShowClear: true,
            scrollBottom: 0,
          toastText: '',
          showType: 0,

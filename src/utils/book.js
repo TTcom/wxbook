@@ -1,5 +1,28 @@
 import { getReadTime,setLocalStorage } from './localStorage'
 import { realPx } from './utils'
+
+
+
+
+export function gotoStoreHome(vue){
+	      vue.$router.push({
+					 path:'/store/home'
+				});
+}
+
+export function appendAddToShelf(list){
+	 list.push({
+		 id:-1,
+		 type:3
+	 });
+	 return list
+}
+
+export function removeAddFromShelf(list){
+	       return list.filter(item => item.type!=3);
+	
+}
+
 export const FONT_SIZE_LIST = [
   { fontSize: 12 },
   { fontSize: 14 },
