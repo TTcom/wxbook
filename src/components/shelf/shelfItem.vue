@@ -1,5 +1,5 @@
 <template>
-	<div class="shelfItem shelf-item-shadow" @click="onItemClick">
+	<div class="shelfItem" :class="{'shelf-item-shadow' : data.type!=3}" @click="onItemClick">
 		<component  
 			class="shelf-item-comp"
 			:is="item" :data="data"

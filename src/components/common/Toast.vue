@@ -10,6 +10,7 @@
 
 <script>
   export default {
+		name:"toast",
     props: {
       text: [String, Number],
       timeout: {
@@ -43,7 +44,7 @@
   }
 </script>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss"  scoped>
   @import "../../assets/styles/global";
 
   .toast-bg {

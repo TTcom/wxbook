@@ -32,7 +32,7 @@ module.exports = {
       'language': 'en',
       'selected': false,
       'private': false,
-      'cache': false,
+      'cache': true,
       'haveRead': 0,
       'type': 2,
       'result': '《Programming Languages》'

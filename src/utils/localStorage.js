@@ -2,6 +2,14 @@ import Storage from 'web-storage-cache'
 
 const localStorage = new Storage()
 
+
+
+export function saveBookShelf(shelf){
+	  return setLocalStorage('shelf',shelf)
+}
+export function getBookShelf(shelf){
+	  return getLocalStorage(shelf)
+}
 export function setLocalStorage(key, value) {
   return localStorage.set(key, value)
 }
