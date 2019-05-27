@@ -19,6 +19,7 @@
 
 <script>
 	import { storeShelfMixin } from '../../utils/mixin'
+	import { download } from '../../api/store'
 	import { saveBookShelf } from '../../utils/localStorage'
 	export default{
 		mixins:[storeShelfMixin],
@@ -28,9 +29,29 @@
 			}
 		},
 		methods:{
-			downloadSelectBook(book){
+			downloadSelectBook(){
+				for(let i = 0; i<this.shelfSelected.length;i++){
+					this.downloadBook(this.shelfSelected[i]);
+				}
 				
-				
+			},
+			downloadBook(book){
+				console.log(book);
+				return new Promise((resolve,reject)=>{
+					download(book,book=>{
+						
+						 console.log(book);
+						
+					},progressEvent=>{
+						const progress = Math.floor(progressEvent.loaded/progressEvent.total*100) + '%';
+						const text = this.$t('shelf.progressDownload').replace('$1',`${book.fileName}.epub(${progress})`)
+						
+						console.log(text)
+						
+						console.log(progressEvent)
+					})
+					
+				})
 			},
 			label(item){
 				switch (item.index){
@@ -73,22 +94,24 @@
 				
 			},
 			setDownload(){
-				let isDownload;
-				if(this.isDownload){
-					isDownload=false;
-				}else{
-					isDownload=true;
-				}
-				this.shelfSelected.forEach(book=>{
-					book.cache = isDownload;
-				});
+				
+				// let isDownload;
+				// if(this.isDownload){
+				// 	isDownload=false;
+				// }else{
+				// 	isDownload=true;
+				// }
+				// this.shelfSelected.forEach(book=>{
+				// 	book.cache = isDownload;
+				// });
+				
 				this.downloadSelectBook();
 				this.onComplete();
-				if(isDownload){ 
-					this.simpleToast(this.$t('shelf.setDownloadSuccess')) 
-				}else{
-					this.simpleToast(this.$t('shelf.removeDownloadSuccess')) 
-				}
+				// if(isDownload){ 
+				// 	this.simpleToast(this.$t('shelf.setDownloadSuccess')) 
+				// }else{
+				// 	this.simpleToast(this.$t('shelf.removeDownloadSuccess')) 
+				// }
 			},
 			showPrivate(){
 				this.popupMenu=this.popup({
