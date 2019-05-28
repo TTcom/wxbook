@@ -24,6 +24,10 @@ sass中&.意味着同级元素的样式；
 vue国际化方式安装vue-i18n依赖
 通过使用vue-create-api依赖来实现组件共享通过定义全局mixin实现所有组件的方法混入；
 通过使用localforage依赖实现浏览器中的IndexedDB进行数据缓存
-
-
+```
+### 2019/05/28
+```
+computed区别于method的两个核心
+1、computed是属性调用，而methods是函数调用
+2、computed带有缓存功能，而methods不是
 ```
