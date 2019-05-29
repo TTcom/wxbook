@@ -7,6 +7,7 @@ import './assets/styles/icon.css'
 import './assets/styles/global.scss'
 import './utils/boost'
 import './utils/create-api'
+import './lazy'
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,7 +1,7 @@
 <template>
   <div class="shelfItemCategory">
     
-		<img class="shelf-item-book-cover" :src="data.cover" >
+		<img class="shelf-item-book-cover" v-lazy="data.cover" >
 		
 		
   </div>
