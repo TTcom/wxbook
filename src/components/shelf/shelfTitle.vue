@@ -2,8 +2,9 @@
   <transition name="fade">
     <div class="shelf-title-wrapper" :class="{'hide-shadow': ifHideShadow}"  v-show="shelfTitleVisible">
       <div class="title">
-        <span class="title-text">{{$t('shelf.title')}}</span>
+        <span class="title-text">{{$t('shelf.title')}} <atom-btn type="primary" size="small">testatom</atom-btn></span>
         <span class="sub-title-text" v-show="isEditMode">{{selectedText}}</span>
+				
       </div>
       <div class="btn-text-wrapper" @click="onEditClick" >  <!-- v-if="!ifGroupEmpty && !isDataEmpty" -->
         <span class="btn-text">{{isEditMode ? $t('shelf.cancel') : $t('shelf.edit')}}</span>

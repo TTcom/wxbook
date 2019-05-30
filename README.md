@@ -31,3 +31,7 @@ computed区别于method的两个核心
 1、computed是属性调用，而methods是函数调用
 2、computed带有缓存功能，而methods不是
 ```
+### 2019/05/30
+```
+增加移动端组件库Atom-Design
+```

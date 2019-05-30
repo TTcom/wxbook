@@ -8,6 +8,9 @@ import './assets/styles/global.scss'
 import './utils/boost'
 import './utils/create-api'
 import './lazy'
+import {Button} from 'atom-design';
+Vue.component(Button.name, Button);
+
 Vue.config.productionTip = false
 
 new Vue({
