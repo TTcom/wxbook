@@ -8,6 +8,7 @@
 <script>
 	import Dragbox from './components/dragbox'
 	import {timeout} from './utils/test'
+	import axios from 'axios'
 	export default{
 		   components:{
 				 Dragbox
@@ -31,16 +32,29 @@
                   
 				  // 实例二使用await
 				  
-				   this.getAllData();
-				   console.log("helloword");
+				   // this.getAllData();
+				   // console.log("helloword");
+				   // 
+				   // var a=5;
+				   // function testa(a){
+					  //  
+					  // return   a == -1 ?  "未知" : (a == 0 ? "中性" : (a == 1 ? "男性" : "女性"))        
+				   // }
+				   //  
+				   // console.log(testa(a));
 				   
-				   var a=5;
-				   function testa(a){
+				   
+				   axios.get('/api/getImg').then(res=>{
 					   
-					  return   a == -1 ?  "未知" : (a == 0 ? "中性" : (a == 1 ? "男性" : "女性"))        
-				   }
-				    
-				   console.log(testa(a));
+					    console.log(res);
+				   })
+				   
+				   
+				   
+				   
+				   
+				   
+				   
 				   
 				   
 				   
