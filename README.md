@@ -35,3 +35,8 @@ computed区别于method的两个核心
 ```
 增加移动端组件库Atom-Design
 ```
+### 2019/06/04
+```
+增加了bing首页的背景图接口调用
+增加了vue-cli 3.0配置webpack目录别名alias
+```

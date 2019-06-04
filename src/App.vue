@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-		<!-- <Dragbox></Dragbox> -->
-    <router-view/>
+		 <!-- <Dragbox></Dragbox> -->
+    <router-view/> 
 		
   </div>
 </template>
 <script>
-	import Dragbox from './components/dragbox'
+	import Dragbox from 'components/dragbox'
 	import {timeout} from './utils/test'
 	import axios from 'axios'
 	export default{
